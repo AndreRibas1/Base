@@ -1,8 +1,8 @@
-title:            muanchiou
-description:      who is muanchiou
-url:              https://muan.co
+title:            André Ribas
+description:      Desenvolvedor Web focado em Frontend construindo o Frontend de Sites e Aplicativos Web.
+url:              https://ar.dev.br
 permalink:        pretty
-timezone:         America/New_York
+timezone:         America/Sao_Paulo
 kramdown:
   hard_wrap: true
 sass:
