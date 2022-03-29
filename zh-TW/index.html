@@ -1,0 +1,47 @@
+---
+title: 邱慕安
+layout: default
+---
+
+<p>
+  <strong>軟體工程師。</strong> 
+  喜歡寫程式。熟悉 JavaScript、Ruby、HTML，和 CSS。最樂於製作低調好用的網站。
+  很在乎易用性、無障礙，和國際化。
+  曾經在倫敦、紐約住過幾年，現定居於台北<span data-timestamp-text="。台北時間現在是 {time}"></span>。
+</p>
+
+<p>
+  也會在 <a href="https://github.com/muan" rel="me">GitHub</a>、<a href="https://twitter.com/muanchiou" rel="me">Twitter</a>、<a href="https://read.cv/muan" rel="me">CV</a>，以及 <a href="https://instagram.com/muanchiou" rel="me">Instagram</a> 上活動。
+</p>
+
+<div class="lang">
+  <a href="/zh-TW/" aria-current="true">正體中文</a><a href="/">English</a>
+</div>
+
+<hr class="hr">
+
+{% assign note = site.data.notes[0] %}
+<h2 class="text">個人筆記 <a href="/notes" class="styled-link">全部筆記</a> <a href="/notes.xml" class="styled-link">RSS</a></h2>
+<div class="note">
+  <div class="note-heading">
+    最新：{{ note.date | date: "%B %d, %Y" }}
+  </div >
+  {{ note.content | markdownify }}
+</div>
+
+<hr class="hr">
+
+<h2 class="text">文章 <a href="/feed.xml" class="styled-link">RSS</a></span></h2>
+<ul aria-label="posts" class="terminal">
+{% assign posts = site.pages | where: "feature", 1 %}
+{% for post in posts %}
+  <li class="line"><a href="{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+
+{% assign posts = site.posts | where: "feature", 1 %}
+{% for post in posts %}
+  <li class="line"><a href="{{ post.url }}">{{ post.title }}</a><br>
+    <time>{{ post.date | date_to_string }}</time></li>
+{% endfor %}
+
+</ul>
