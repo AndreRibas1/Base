@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="{% if page.path contains 'zh-TW' %}zh-TW{% else %}en{% endif %}">
   <head>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="me" href="https://ar.dev.br" />
     <link rel="alternate" type="application/rss+xml" href="/notes.xml" />
     <link rel="icon" href="https://ar.dev.br/assets/png/andre-ribas.png" type="image/svg+xml" />
@@ -29,17 +30,9 @@
       name="description"
     />
     <meta content="article" property="og:type" />
-    <meta content="@muanchiou" property="twitter:site" />
+    <meta content="@andre_ribas1" property="twitter:site" />
     <meta name="twitter:card" content="summary_large_image" />
     {% if page.image %}
-    <meta
-      content="http://muan.co/images/{{ page.image }}"
-      property="og:image"
-    />
-    <meta
-      content="http://muan.co/images/{{ page.image }}"
-      property="twitter:image"
-    />
     {% elsif page.image_text %}
     <meta
       content="https://muan-text-image.herokuapp.com/title?v=2&text={{ page.image_text | strip | url_encode }}"
