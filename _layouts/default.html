@@ -147,11 +147,77 @@
         </div-->
       {% else %} {{ content }} {% endif %}
     </main>
-    <footer>
-      <hr class="hr" />
-      Mu-An Chiou
-    </footer>
+    <footer class="main-footer">
+      <div class="main-container">
+        <div class="main-footer__upper">
+          <div class="main-footer__row main-footer__row-1">
+            <h2 class="heading heading-sm main-footer__heading-sm">
+              <span>Social</span>
+            </h2>
+            <div class="main-footer__social-cont">
+              <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/andre-ribas1/">
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/linkedin-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a target="_blank" rel="noreferrer" href="https://github.com/AndreRibas1/">
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/github-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/andre_ribas1">
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/twitter-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a target="_blank" rel="noreferrer" href="https://t.me/andre_ribas">
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/tg-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a target="_blank" rel="noreferrer" href="https://instagram.com/andre_ribas1">
+                <img
+                  class="main-footer__icon main-footer__icon--mr-none"
+                  src="./assets/png/insta-ico.png"
+                  alt="icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="main-footer__row main-footer__row-2">
+            <h4 class="heading heading-sm text-lt">André Ribas</h4>
+            <p class="main-footer__short-desc">
+              Desenvolvedor Web focado em Frontend construindo o Frontend de Sites e Aplicativos Web.
+            </p>
+          </div>
+        </div>
 
+        
+        <div class="main-footer__lower">
+          Copyright &copy; 2022 André Ribas.
+        </div>
+      </div>
+    </footer>
+    <!-- VLibras -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="https://ar.dev.br/index.js"></script>
     <script>
       function settime() {
         const timestamp = document.querySelector("[data-timestamp-text]");
@@ -174,6 +240,5 @@
       }
       settime();
     </script>
-    <script src="https://ar.dev.br/index.js"></script>
   </body>
 </html>
