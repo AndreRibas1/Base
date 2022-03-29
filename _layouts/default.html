@@ -1,60 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{% if page.path contains 'zh-TW' %}zh-TW{% else %}en{% endif %}">
   <head>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="text/html; charset=utf-8" http-equiv="content-type">
-    <link rel="me" href="https://micro.blog/muan">
-    <link rel="alternate" type="application/rss+xml" href="/notes.xml">
-    <link rel="icon" href="/assets/fav.svg" type="image/svg+xml">
-    <link rel="authorization_endpoint" href="https://github-indieauth.herokuapp.com/auth">
-    <link rel="token_endpoint" href="https://github-indieauth.herokuapp.com/token">
-    <link rel="micropub" href="https://site-endpoint.herokuapp.com/micropub">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link rel="me" href="https://micro.blog/muan" />
+    <link rel="alternate" type="application/rss+xml" href="/notes.xml" />
+    <link rel="icon" href="/assets/fav.svg" type="image/svg+xml" />
+    <link
+      rel="authorization_endpoint"
+      href="https://github-indieauth.herokuapp.com/auth"
+    />
+    <link
+      rel="token_endpoint"
+      href="https://github-indieauth.herokuapp.com/token"
+    />
+    <link rel="micropub" href="https://site-endpoint.herokuapp.com/micropub" />
     {% if page.collection == "posts" %}
-      <link href="/assets/syntax.css" rel="stylesheet" type="text/css">
+    <link
+      href="https://ar.dev.br/css/style.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    {% endif %} {% if page.collection == "posts" or page.collection == "pages"
+    %}
+    <meta content="{{ site.url }}{{ page.url }}" property="og:url" />
+    <meta
+      content="{{ page.content | strip_html | strip_newlines | truncate: 120 }}"
+      name="description"
+    />
+    <meta content="article" property="og:type" />
+    <meta content="@muanchiou" property="twitter:site" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {% if page.image %}
+    <meta
+      content="http://muan.co/images/{{ page.image }}"
+      property="og:image"
+    />
+    <meta
+      content="http://muan.co/images/{{ page.image }}"
+      property="twitter:image"
+    />
+    {% elsif page.image_text %}
+    <meta
+      content="https://muan-text-image.herokuapp.com/title?v=2&text={{ page.image_text | strip | url_encode }}"
+      property="og:image"
+    />
+    <meta
+      content="https://muan-text-image.herokuapp.com/title?v=2&text={{ page.image_text | strip | url_encode }}"
+      property="twitter:image"
+    />
     {% endif %}
-    <link href="/assets/new.css" rel="stylesheet" type="text/css">
-    {% if page.collection == "posts" or page.collection == "pages" %}
-      <meta content="{{ site.url }}{{ page.url }}" property="og:url">
-      <meta content="{{ page.content | strip_html | strip_newlines | truncate: 120 }}" name="description">
-      <meta content="article" property="og:type">
-      <meta content="@muanchiou" property="twitter:site">
-      <meta name="twitter:card" content="summary_large_image">
-      {% if page.image %}
-        <meta content="http://muan.co/images/{{ page.image }}" property="og:image">
-        <meta content="http://muan.co/images/{{ page.image }}" property="twitter:image">
-      {% elsif page.image_text %}
-        <meta content="https://muan-text-image.herokuapp.com/title?v=2&text={{ page.image_text | strip | url_encode }}" property="og:image">
-        <meta content="https://muan-text-image.herokuapp.com/title?v=2&text={{ page.image_text | strip | url_encode }}" property="twitter:image">
-      {% endif %}
-      <title>{{ page.title }} - {{ site.title }}</title>
-      <meta content="{{ page.title }} - {{ site.title }}" property="og:title">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <meta content="{{ page.title }} - {{ site.title }}" property="og:title" />
     {% else %}
-      <title>{{ site.title }}</title>
-      <meta content="{{ site.title }}" property="og:title">
-      <meta content="{{ site.description }}" name="description">
-      <meta content="blog" property="og:type">
-      
-    {% endif %}
-    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
+    <title>{{ site.title }}</title>
+    <meta content="{{ site.title }}" property="og:title" />
+    <meta content="{{ site.description }}" name="description" />
+    <meta content="blog" property="og:type" />
 
+    {% endif %}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="{% if page.collection == 'posts' %}post-body{% endif %}">
     <header>
       {% if page.path != 'index.html' and page.path != 'zh-TW/index.html' %}
-        <a class="styled-link" href="/" aria-label="Home">&leftarrow;</a>
+      <a class="styled-link" href="/" aria-label="Home">&leftarrow;</a>
       {% endif %}
-      <h1 class="h1">
-        {{ page.title }}
-      </h1>
-      {% if page.collection == 'posts' %}<time>{{ page.date | date_to_string }}</time>{% endif %}
+      <h1 class="h1">{{ page.title }}</h1>
+      {% if page.collection == 'posts' %}<time
+        >{{ page.date | date_to_string }}</time
+      >{% endif %}
       <div class="desc">{{ page.header_content }}</div>
     </header>
     <main>
       {% if page.collection == "posts" or page.collection == "pages" %}
-        <article>
-          {{ content }}
-        </article>
-        <!--div class="pagination">
+      <article>{{ content }}</article>
+      <!--div class="pagination">
           {% if page.previous %}
             <div><a href="{{ page.previous.url }}">
               Prev: {{ page.previous.title }}
@@ -66,31 +90,34 @@
             </a></div>
           {% endif %}
         </div-->
-      {% else %}
-        {{ content }}
-      {% endif %}
+      {% else %} {{ content }} {% endif %}
     </main>
     <footer>
-      <hr class="hr">
+      <hr class="hr" />
       Mu-An Chiou
     </footer>
 
     <script>
       function settime() {
-        const timestamp = document.querySelector('[data-timestamp-text]')
-        if (!timestamp || !('Intl' in window)) return
+        const timestamp = document.querySelector("[data-timestamp-text]");
+        if (!timestamp || !("Intl" in window)) return;
         const options = {
           timeZone: "Asia/Taipei",
           timeStyle: "short",
-          hour12: false
-        }
-        const time = new Intl.DateTimeFormat(navigator.languages[0] || "zh-TW", options).format(new Date())
+          hour12: false,
+        };
+        const time = new Intl.DateTimeFormat(
+          navigator.languages[0] || "zh-TW",
+          options
+        ).format(new Date());
         // Setting interpolated string instead of just the time because
         // if there's no JS there should be no mentions of current time
-        timestamp.textContent = timestamp.getAttribute('data-timestamp-text').replace('{time}', time)
-        setTimeout(settime, (60 - new Date().getSeconds()) * 1000)
+        timestamp.textContent = timestamp
+          .getAttribute("data-timestamp-text")
+          .replace("{time}", time);
+        setTimeout(settime, (60 - new Date().getSeconds()) * 1000);
       }
-      settime()
+      settime();
     </script>
   </body>
 </html>
