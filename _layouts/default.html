@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="{% if page.path contains 'zh-TW' %}zh-TW{% else %}en{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="shortcut icon"
+      href="./assets/png/andre-ribas.png"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="./assets/png/andre-ribas.png" type="image/x-icon" />
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <meta content="{{ page.title }} - {{ site.title }}" property="og:title" />
+    {% else %}
+    <title>{{ site.title }}</title>
+    <meta content="{{ site.title }}" property="og:title" />
+    <meta content="{{ site.description }}" name="description" />
+    <meta content="blog" property="og:type" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="{% if page.collection == 'posts' %}post-body{% endif %}">
+    <header>
+      {% if page.path != 'index.html' and page.path != 'zh-TW/index.html' %}
+      <a class="styled-link" href="/" aria-label="Home">&leftarrow;</a>
+      {% endif %}
+      <h1 class="h1">{{ page.title }}</h1>
+      {% if page.collection == 'posts' %}<time
+        >{{ page.date | date_to_string }}</time
+      >{% endif %}
+      <div class="desc">{{ page.header_content }}</div>
+    </header>
+    <main>
+      {% if page.collection == "posts" or page.collection == "pages" %}
+      <article>{{ content }}</article>
+      <!--div class="pagination">
+          {% if page.previous %}
+            <div><a href="{{ page.previous.url }}">
+              Prev: {{ page.previous.title }}
+            </a></div>
+          {% endif %}
+          {% if page.next %}
+            <div><a href="{{ page.next.url }}">
+              Next: {{ page.next.title }}
+            </a></div>
+          {% endif %}
+        </div-->
+      {% else %} {{ content }} {% endif %}
+    </main>
+    <footer class="main-footer">
+      <div class="main-container">
+        <div class="main-footer__upper">
+          <div class="main-footer__row main-footer__row-1">
+            <h2 class="heading heading-sm main-footer__heading-sm">
+              <span>Social</span>
+            </h2>
+            <div class="main-footer__social-cont">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.linkedin.com/in/andre-ribas1/"
+              >
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/linkedin-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://github.com/AndreRibas1/"
+              >
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/github-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://twitter.com/andre_ribas1"
+              >
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/twitter-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://t.me/andre_ribas"
+              >
+                <img
+                  class="main-footer__icon"
+                  src="./assets/png/tg-ico.png"
+                  alt="icon"
+                />
+              </a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://instagram.com/andre_ribas1"
+              >
+                <img
+                  class="main-footer__icon main-footer__icon--mr-none"
+                  src="./assets/png/insta-ico.png"
+                  alt="icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="main-footer__row main-footer__row-2">
+            <h4 class="heading heading-sm text-lt">André Ribas</h4>
+            <p class="main-footer__short-desc">
+              Desenvolvedor Web focado em Frontend construindo o Frontend de
+              Sites e Aplicativos Web.
+            </p>
+          </div>
+        </div>
+
+        <div class="main-footer__lower">Copyright &copy; 2022 André Ribas.</div>
+      </div>
+    </footer>
+
+    <script>
+      function settime() {
+        const timestamp = document.querySelector("[data-timestamp-text]");
+        if (!timestamp || !("Intl" in window)) return;
+        const options = {
+          timeZone: "Asia/Taipei",
+          timeStyle: "short",
+          hour12: false,
+        };
+        const time = new Intl.DateTimeFormat(
+          navigator.languages[0] || "zh-TW",
+          options
+        ).format(new Date());
+        // Setting interpolated string instead of just the time because
+        // if there's no JS there should be no mentions of current time
+        timestamp.textContent = timestamp
+          .getAttribute("data-timestamp-text")
+          .replace("{time}", time);
+        setTimeout(settime, (60 - new Date().getSeconds()) * 1000);
+      }
+      settime();
+    </script>
+  </body>
+</html>
